@@ -28,17 +28,17 @@ export const Input: React.FC<InputProps> = ({
     <div className="mb-6">
       <label
         htmlFor={inputId}
-        className="block text-xl font-bold text-monster-white mb-3"
+        className="block text-xl font-bold text-cyber-green mb-3 matrix-text uppercase tracking-widest"
       >
-        {label}
-        {required && <span className="text-red-400 ml-1">*</span>}
+        [{label.replace(/\s/g, '_')}]
+        {required && <span className="text-cyber-cyan ml-1">*</span>}
       </label>
       <input
         id={inputId}
         className={[
-          'w-full bg-monster-gray border-2 border-monster-light-gray text-monster-white rounded-xl',
-          'focus:border-monster-green focus:bg-monster-dark focus:ring-2 focus:ring-monster-green focus:ring-opacity-50',
-          'placeholder-monster-silver transition-all duration-200',
+          'w-full bg-cyber-dark border-2 border-cyber-green text-cyber-green wireframe-border',
+          'focus:border-cyber-cyan focus:bg-cyber-dark focus:neon-glow-cyan',
+          'placeholder-cyber-cyan placeholder-opacity-50 transition-all duration-200 font-matrix tracking-wide',
           error ? 'border-red-500 focus:border-red-500' : '',
           sizeStyles[size],
           className

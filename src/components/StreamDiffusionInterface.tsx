@@ -45,13 +45,13 @@ const StreamDiffusionInterface: React.FC<StreamDiffusionInterfaceProps> = ({
   }, [handleSend, isSending, params.prompt]);
 
   return (
-    <div className="bg-monster-gray bg-opacity-80 backdrop-blur-sm rounded-2xl p-8 border border-monster-light-gray border-opacity-50 monster-glow">
+    <div className="wireframe-border bg-cyber-dark bg-opacity-90 backdrop-blur-sm p-8 neon-glow-green">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-monster-white mb-2">
-          Real-Time Transformation
+        <h1 className="text-4xl font-bold text-cyber-green mb-2 matrix-text tracking-wider">
+          [REAL_TIME_TRANSFORMATION]
         </h1>
-        <p className="text-monster-silver text-lg">
-          Transform live camera feed with TouchDesigner
+        <p className="text-cyber-cyan text-lg font-cyber uppercase tracking-widest">
+          {'>> TOUCHDESIGNER_MATRIX_INTERFACE <<'}
         </p>
       </div>
 
@@ -104,21 +104,21 @@ const StreamDiffusionInterface: React.FC<StreamDiffusionInterfaceProps> = ({
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-monster-light-gray border-opacity-30">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-monster-green">
+        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-cyber-green border-opacity-50">
+          <div className="text-center wireframe-border p-3 neon-glow-cyan">
+            <div className="text-2xl font-bold text-cyber-cyan matrix-text">
               {params.prompt.length}
             </div>
-            <div className="text-sm text-monster-silver">
-              Characters
+            <div className="text-xs text-cyber-green font-cyber uppercase tracking-widest">
+              [CHAR_COUNT]
             </div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-monster-green">
-              {params.steps}%
+          <div className="text-center wireframe-border p-3 neon-glow-cyan">
+            <div className="text-2xl font-bold text-cyber-cyan matrix-text">
+              {Math.round((params.steps / 65) * 100)}%
             </div>
-            <div className="text-sm text-monster-silver">
-              Effect Strength
+            <div className="text-xs text-cyber-green font-cyber uppercase tracking-widest">
+              [INTENSITY_LVL]
             </div>
           </div>
         </div>

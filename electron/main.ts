@@ -1,6 +1,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import { TouchDesignerWebSocketServer } from '../src/services/websocket-server';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let mainWindow: BrowserWindow | null = null;
 let isQuitting = false;
@@ -8,23 +12,25 @@ let wsServer: TouchDesignerWebSocketServer;
 
 const createWindow = () => {
   const isDev = process.env.NODE_ENV === 'development';
+  const preloadPath = path.join(__dirname, 'preload.js');
+  
+  console.log('🔧 Creating window with preload path:', preloadPath);
+  console.log('🔧 __dirname is:', __dirname);
   
   mainWindow = new BrowserWindow({
     width: isDev ? 1200 : undefined,
     height: isDev ? 800 : undefined,
-    fullscreen: !isDev,
-    frame: isDev,
-    kiosk: !isDev,
+    fullscreen: true,
+    frame: false,
+    kiosk: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: preloadPath,
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
 
-  if (!isDev) {
-    mainWindow.setMenuBarVisibility(false);
-  }
+  mainWindow.setMenuBarVisibility(false);
 
   mainWindow.on('close', (e) => {
     if (!isQuitting && !isDev) {

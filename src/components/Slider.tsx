@@ -28,29 +28,33 @@ export const Slider: React.FC<SliderProps> = ({
   return (
     <div className={`mb-6 ${className}`}>
       <div className="flex justify-between items-center mb-4">
-        <label className="text-xl font-bold text-monster-white">
-          {label}
+        <label className="text-xl font-bold text-cyber-green matrix-text uppercase tracking-widest">
+          [{label.replace(/\s/g, '_')}]
         </label>
         {showValue && (
-          <div className="text-2xl font-bold text-monster-green monster-glow px-4 py-2 bg-monster-dark rounded-lg border border-monster-green border-opacity-30">
-            {value} {valueLabel}
+          <div className="text-2xl font-bold text-cyber-cyan neon-glow-cyan px-4 py-2 bg-cyber-dark wireframe-border matrix-text">
+            {value} [{valueLabel.toUpperCase()}]
           </div>
         )}
       </div>
       
       <div className="relative h-12 flex items-center">
         {/* Track */}
-        <div className="w-full h-4 bg-monster-gray rounded-full border border-monster-light-gray relative">
+        <div className="w-full h-4 bg-cyber-dark border-2 border-cyber-green relative wireframe-border">
           {/* Progress */}
           <div 
-            className="h-full bg-gradient-to-r from-monster-green to-monster-green rounded-full monster-glow transition-all duration-200"
+            className="h-full bg-cyber-green neon-glow-green transition-all duration-200"
             style={{ width: `${percentage}%` }}
           />
           
-          {/* Thumb indicator */}
+          {/* Thumb indicator - positioned inside track with original working logic */}
           <div 
-            className="absolute top-1/2 w-8 h-8 bg-monster-green rounded-full border-4 border-monster-dark monster-glow-strong transform -translate-y-1/2 -translate-x-1/2 transition-all duration-200 shadow-lg pointer-events-none"
-            style={{ left: `${percentage}%` }}
+            className="absolute w-8 h-8 bg-cyber-green border-2 border-cyber-green neon-glow-green transition-all duration-200 pointer-events-none"
+            style={{ 
+              top: '50%',
+              left: `${percentage}%`,
+              transform: 'translate(-50%, -50%)'
+            }}
           />
         </div>
         
@@ -70,10 +74,10 @@ export const Slider: React.FC<SliderProps> = ({
         />
       </div>
       
-      {/* Min/Max labels */}
-      <div className="flex justify-between mt-2 text-sm text-monster-silver">
-        <span>{min}</span>
-        <span>{max}</span>
+      {/* Min/Max labels - hidden from user, they just see intensity indicators */}
+      <div className="flex justify-between mt-2 text-sm text-cyber-cyan matrix-text">
+        <span>[MIN]</span>
+        <span>[MAX]</span>
       </div>
     </div>
   );

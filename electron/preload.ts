@@ -1,11 +1,11 @@
-import { contextBridge, ipcRenderer } from 'electron';
+const { contextBridge, ipcRenderer } = require('electron');
 
-export interface ElectronAPI {
-  sendStreamDiffusionData: (data: { prompt: string; steps: number }) => Promise<{ success: boolean; error?: any }>;
-}
+console.log('🔧 Preload script is loading...');
 
-const electronAPI: ElectronAPI = {
+const electronAPI = {
   sendStreamDiffusionData: (data) => ipcRenderer.invoke('send-streamdiffusion-data', data),
 };
 
+console.log('🌉 Exposing ElectronAPI to main world...');
 contextBridge.exposeInMainWorld('electronAPI', electronAPI);
+console.log('✅ ElectronAPI exposed successfully');

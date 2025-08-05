@@ -37,19 +37,19 @@ const TooltipHints: React.FC<TooltipHintsProps> = ({
   return (
     <div className="text-center">
       <div className={`transition-all duration-300 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-2'}`}>
-        <div className={`inline-flex items-center px-6 py-3 rounded-full border-2 ${
+        <div className={`inline-flex items-center px-6 py-3 border-2 wireframe-border ${
           isPromptHint 
-            ? 'bg-monster-green bg-opacity-10 border-monster-green text-monster-green' 
-            : 'bg-blue-500 bg-opacity-10 border-blue-400 text-blue-400'
+            ? 'bg-cyber-dark bg-opacity-90 border-cyber-green text-cyber-green neon-glow-green' 
+            : 'bg-cyber-dark bg-opacity-90 border-cyber-cyan text-cyber-cyan neon-glow-cyan'
         } backdrop-blur-sm`}>
-          {/* Gaming-style icon */}
-          <div className="mr-3 text-lg">
-            {isPromptHint ? '💡' : 'ℹ️'}
+          {/* Cyberpunk-style icon */}
+          <div className="mr-3 text-lg matrix-text">
+            {isPromptHint ? '[>]' : '[i]'}
           </div>
           
           {/* Hint text */}
-          <span className="font-medium text-lg">
-            {currentHint.text}
+          <span className="font-medium text-lg matrix-text tracking-wide uppercase">
+            {currentHint.text.toUpperCase()}
           </span>
           
           {/* Animated dots if it's rotating */}
@@ -58,10 +58,10 @@ const TooltipHints: React.FC<TooltipHintsProps> = ({
               {hints.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 wireframe-border transition-all duration-300 ${
                     index === currentHintIndex 
-                      ? (isPromptHint ? 'bg-monster-green' : 'bg-blue-400')
-                      : 'bg-monster-silver bg-opacity-30'
+                      ? (isPromptHint ? 'bg-cyber-green neon-glow-green' : 'bg-cyber-cyan neon-glow-cyan')
+                      : 'bg-cyber-light-gray bg-opacity-30'
                   }`}
                 />
               ))}
@@ -72,8 +72,8 @@ const TooltipHints: React.FC<TooltipHintsProps> = ({
       
       {/* Gaming-style decorative elements */}
       <div className="flex justify-center mt-4 space-x-8 opacity-30">
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-monster-green to-transparent"></div>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-monster-green to-transparent"></div>
+        <div className="w-16 h-px bg-gradient-to-r from-transparent via-cyber-green to-transparent"></div>
+        <div className="w-16 h-px bg-gradient-to-r from-transparent via-cyber-cyan to-transparent"></div>
       </div>
     </div>
   );

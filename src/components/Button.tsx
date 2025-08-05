@@ -12,9 +12,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-monster-green hover:bg-monster-green text-monster-dark hover:text-monster-dark',
-  secondary: 'bg-monster-light-gray hover:bg-monster-silver text-monster-white hover:text-monster-dark',
-  danger: 'bg-red-600 hover:bg-red-700 text-white',
+  primary: 'bg-cyber-dark border-2 border-cyber-green text-cyber-green hover:bg-cyber-green hover:text-cyber-dark neon-glow-green',
+  secondary: 'bg-cyber-dark border-2 border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-cyber-dark neon-glow-cyan',
+  danger: 'bg-cyber-dark border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-cyber-dark',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -34,9 +34,9 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseClasses = 'game-button rounded-xl font-bold transition-all duration-200 touch-focus';
-  const glowClasses = glowing ? 'monster-glow-strong animate-glow' : '';
-  const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:scale-95';
+  const baseClasses = 'wireframe-border font-bold transition-all duration-200 matrix-text uppercase tracking-widest';
+  const glowClasses = glowing ? 'neon-glow-green animate-glow' : '';
+  const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:scale-105 active:scale-95';
   
   return (
     <button

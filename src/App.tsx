@@ -24,22 +24,30 @@ const App: React.FC = () => {
   }, []);
 
   const handleSend = useCallback(async (params: StreamDiffusionParams) => {
+    const invertedSteps = 66 - params.steps;
+    const dataToSend = { ...params, steps: invertedSteps };
+    console.log('🎯 Sending transformation data:', dataToSend);
     try {
       if (window.electronAPI) {
-        const result = await window.electronAPI.sendStreamDiffusionData(params);
+        console.log('✅ ElectronAPI is available');
+        const result = await window.electronAPI.sendStreamDiffusionData(dataToSend);
+        console.log('📤 Result from Electron:', result);
         if (result.success) {
-          setLastSent(`${params.prompt} (intensity: ${params.steps})`);
+          setLastSent(`${params.prompt} (intensity: ${Math.round((params.steps / 65) * 100)}%)`);
+          console.log('✅ Transformation data sent successfully');
         } else {
-          console.error('Failed to send transformation data:', result.error);
+          console.error('❌ Failed to send transformation data:', result.error);
         }
+      } else {
+        console.error('❌ ElectronAPI is not available');
       }
     } catch (error) {
-      console.error('Error sending transformation data:', error);
+      console.error('💥 Error sending transformation data:', error);
     }
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-monster-dark via-monster-gray to-monster-dark flex flex-col">
+    <div className="min-h-screen bg-cyber-dark flex flex-col relative overflow-hidden">
       {/* Header with Monster Logo */}
       <div className="flex justify-center py-8">
         <MonsterLogo />
@@ -64,8 +72,8 @@ const App: React.FC = () => {
           {/* Last Sent Status */}
           {lastSent && (
             <div className="text-center mt-6">
-              <div className="text-monster-silver text-sm opacity-75">
-                Last transformation: {lastSent}
+              <div className="text-cyber-green text-sm matrix-text neon-glow-green">
+                [LAST_TRANSMISSION]: {lastSent}
               </div>
             </div>
           )}

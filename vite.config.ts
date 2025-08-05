@@ -20,7 +20,10 @@ export default defineConfig({
             minify: false,
             outDir: 'dist-electron',
             rollupOptions: {
-              external: ['ws']
+              external: ['ws', 'electron'],
+              output: {
+                format: 'esm'
+              }
             }
           }
         }
@@ -36,7 +39,10 @@ export default defineConfig({
             minify: false,
             outDir: 'dist-electron',
             rollupOptions: {
-              external: ['ws']
+              external: ['electron'],
+              output: {
+                format: 'cjs'
+              }
             }
           }
         }
