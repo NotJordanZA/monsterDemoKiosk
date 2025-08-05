@@ -25,7 +25,12 @@ const StreamDiffusionInterface: React.FC<StreamDiffusionInterfaceProps> = ({
   const handleStepsChange = useCallback((steps: number) => {
     const newParams = { ...params, steps };
     onParamsChange(newParams);
-  }, [params, onParamsChange]);
+    
+    // Send live updates while dragging slider if we have a prompt
+    if (params.prompt.trim()) {
+      onSend(newParams);
+    }
+  }, [params, onParamsChange, onSend]);
 
   const handleSend = useCallback(async () => {
     if (!params.prompt.trim()) return;
